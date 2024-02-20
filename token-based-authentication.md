@@ -1,12 +1,12 @@
-## Token-based authentication
+## JWT Authentication
 
-JSON Web Token (JWT) : hanyalah sebuah string unik yang diberikan ke pengguna dari situs saat mereka masuk. JWT adalah JSON, yaitu string yang berisi informasi tentang pengguna (seperti user ID, email, data dasar pengguna, dll). Ini adalah cara aman untuk mengirimkan informasi atau data antara dua pihak, misalnya pengguna dan situs web yang dikunjungi.
+JSON Web Token (JWT) : hanyalah sebuah string unik yang diberikan ke pengguna dari situs saat mereka masuk. JWT adalah JSON, yaitu string yang berisi informasi tentang pengguna (seperti user ID, email, data dasar pengguna, dll). Ini adalah cara aman untuk mengirim data antara dua pihak, misalnya pengguna dan situs web yang dikunjungi.
 
 Data yang dikirim dengan JWT disebut **“klaim”**, yang bisa berupa data apa saja yang berkaitan dengan pengguna. Klaim ini terdiri dari tiga bagian, yaitu:
 
-1. **Header:** Bagian ini memberitahu jenis token dan cara menandatanganinya (Signing).
-2. **Payload:** Bagian ini berisi klaim yang dikirimkan.
-3. **Signature:** bagian ini adalah tanda tangan yang dibuat dengan rahasia atau kunci khusus. Digunakan untuk membuktikan keaslian data JWT.
+1. **Header:** Berisi metadata tentang token, seperti algoritma penandatanganan dan jenis token.
+2. **Payload:** Berisi data yang ingin ditransmisikan, seperti informasi pengguna atau klaim otorisasi.
+3. **Signature:** Digunakan untuk memverifikasi integritas token dan memastikan bahwa token tidak diubah.
 
 Ketiga bagian ini disatukan dengan titik (.) dan membentuk JWT. Misalnya:
 
@@ -19,11 +19,11 @@ Jadi, orang yang memiliki JWT bisa masuk ke situs tanpa perlu sandi atau email, 
 Cara kerja JWT dalam aplikasi Fullstack:
 
 - **Langkah 1**: Pengguna masuk dengan mengirimkan username atau email dan password ke server. Server memeriksa apakah data tersebut benar. Jika benar, pengguna diizinkan untuk masuk.
-- **Langkah 2**: Server membuat JWT yang berisi data pengguna. Server juga memiliki kunci rahasia yang digunakan untuk membuat tanda tangan pada JWT. Hanya server yang tahu kunci dan tanda tangan ini.
+- **Langkah 2**: Server membuat JWT yang berisi data pengguna. Server juga memiliki secret_key yang digunakan untuk menandatangani JWT.
 - **Langkah 3**: Server mengirimkan JWT ke pengguna.
 - **Langkah 4**: Frontend menyimpan JWT di tempat yang aman, misalnya cookie, session storage, atau local storage. Tempat penyimpanan yang berbeda memiliki keamanan yang berbeda juga.
 - **Langkah 5**: Ketika pengguna ingin melakukan sesuatu di aplikasi, misalnya melihat atau mengubah data pribadi, mereka harus mengirimkan JWT bersama dengan permintaan (Request) mereka. Ini karena server perlu tahu siapa pengguna dan apa yang boleh mereka lakukan. JWT berfungsi sebagai bukti identitas dan otorisasi pengguna. Pengguna dapat mengirimkan JWT dengan cara yang berbeda, misalnya dengan menempatkannya di header permintaan, atau di bagian body permintaan. Yang penting adalah server dapat menerima dan membaca JWT.
-- **Langkah 6**: Server memverifikasi JWT menggunakan kunci rahasia. Server akan melihat tanda tangan dan waktu berlaku JWT. Jika cocok dan belum kadaluarsa, server akan memproses permintaan pengguna.
+- **Langkah 6**: Server memverifikasi JWT menggunakan secret_key. Server akan melihat tanda tangan dan waktu berlaku JWT. Jika cocok dan belum kadaluarsa, server akan memproses permintaan pengguna.
 
 Beberapa detail lain yang perlu diketahui:
 
