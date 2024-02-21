@@ -16,8 +16,8 @@ export default function Notification({ ...props }) {
       <div className={styles["notification__icon"]}>
         {variant === "success" ? <CheckCircleIcon /> : <ExclamationCircleIcon />}
       </div>
-      <p>{infoMessage}</p>
-      <button type="submit" className={styles["notification__button"]} onClick={() => onClose()}>
+      <p className={styles["notification__message"]}>{infoMessage}</p>
+      <button type="button" className={styles["notification__button"]} onClick={() => onClose()}>
         {<XMarkIcon className={styles["notification__button-icon"]} />}
       </button>
     </div>
