@@ -1,6 +1,4 @@
 const express = require("express");
-
-// Membuat router express
 const router = express.Router();
 
 // Membuat rute GET untuk mengetes koneksi ke database

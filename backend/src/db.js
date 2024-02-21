@@ -1,8 +1,9 @@
 const mongoose = require("mongoose");
+const config = require("./config");
 
 // Membuat koneksi ke database MongoDB lokal
-mongoose.connect(process.env.DATABASE_URL, {
-  dbName: process.env.DATABASE_NAME,
+mongoose.connect(config.dbUrl, {
+  dbName: config.dbName,
 });
 
 // Mendapatkan referensi ke objek koneksi
